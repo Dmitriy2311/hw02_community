@@ -12,7 +12,7 @@ class Group(models.Model):
     def __str__(self):
         return self.title
 
-        
+
 class Post(models.Model):
     text = models.TextField()
     pub_date = models.DateTimeField(auto_now_add=True)
@@ -23,16 +23,16 @@ class Post(models.Model):
     )
 
     group = models.ForeignKey(
-        Group, 
-        blank=True, 
+        Group,
+        blank=True,
         null=True,
         on_delete=models.CASCADE,
         related_name='group'
     )
-    
+
     class Meta:
         ordering = ['-pub_date']
-        default_related_name = 'posts' 
+        default_related_name = 'posts'
 
     def __str__(self):
         return self.text
