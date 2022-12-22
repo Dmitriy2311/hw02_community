@@ -13,7 +13,7 @@ def index(request):
 
 def group_posts(request, slug):
     group = get_object_or_404(Group, slug=slug)
-    posts = group.groups_set.all()[:POST_LIMIT]
+    posts = group.groups.all()[:POST_LIMIT]
     return render(request, 'posts/group_list.html',
                   {"group": group, "posts": posts}
                   )
