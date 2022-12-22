@@ -5,6 +5,7 @@ User = get_user_model()
 
 ml = 200
 
+
 class Group(models.Model):
     title = models.CharField(max_length=ml)
     slug = models.SlugField(unique=True)
