@@ -1,23 +1,17 @@
 from django.shortcuts import render, get_object_or_404
+
 from .models import Post, Group
+
+POST_LIMIT = 10
 
 
 # Create your views here.
 def index(request):
-    posts = Post.objects.order_by('-pub_date')[:10]
-    context = {
-        'posts': posts,
-    }
-    return render(request, 'posts/index.html', context)
+    post1 = Post.objects.all()[:POST_LIMIT]
+    return render(request, 'posts/index.html', {"posts": post1})
 
 
 def group_posts(request, slug):
     group = get_object_or_404(Group, slug=slug)
-    posts = Post.objects.filter(group=group).order_by('-pub_date')[:10]
-    title = 'Здесь будет информация о группах проекта Yatube'
-    context = {
-        'title': title,
-        'group': group,
-        'posts': posts,
-    }
-    return render(request, 'posts/group_list.html', context)
+    posts = group.groups_set.all()[:POST_LIMIT]
+    return render(request, 'posts/group_list.html', {"group": group, "posts": posts})

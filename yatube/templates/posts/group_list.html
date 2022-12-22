@@ -7,7 +7,7 @@
         <h1> {{ group.description }} </h1>
         <p>{{ group.title }}</p>
         <article>
-          {% for post in posts %}
+        {% for post in posts %}
           <ul>      
             <li>
               Автор: {{ post.author.get_full_name }}
@@ -16,8 +16,10 @@
               Дата публикации: {{ post.pub_date|date:"d E Y" }}
             </li>
           </ul>
-        <p>{{ post.text }}</p>
-        {% endfor %}
-        </article>  
+        <br>{{ post.text }}</br>
+        </article>
+        {% if not forloop.last %}<hr>{% endif %}
+      {% endfor %}  
       </div>  
     {% endblock %}
+    
