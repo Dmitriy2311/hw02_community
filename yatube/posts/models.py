@@ -3,11 +3,11 @@ from django.contrib.auth import get_user_model
 
 User = get_user_model()
 
-ml = 200
+MAX_LENGTH = 200
 
 
 class Group(models.Model):
-    title = models.CharField(max_length=ml)
+    title = models.CharField(max_length=MAX_LENGTH)
     slug = models.SlugField(unique=True)
     description = models.TextField()
 
@@ -29,7 +29,7 @@ class Post(models.Model):
         blank=True,
         null=True,
         on_delete=models.SET_NULL,
-        related_name='groups'
+        related_name='group'
     )
 
     class Meta:
