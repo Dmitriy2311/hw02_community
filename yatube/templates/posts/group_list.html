@@ -6,8 +6,8 @@
       <div class="container py-5">
         <h1> {{ group.description }} </h1>
         <p>{{ group.title }}</p>
-        {% for post in posts %}
         <article>
+        {% for post in posts %}
           <ul>      
             <li>
               Автор: {{ post.author.get_full_name }}
@@ -16,10 +16,10 @@
               Дата публикации: {{ post.pub_date|date:"d E Y" }}
             </li>
           </ul>
-        <br>{{ post.text }}</br>
-        </article>
+        <p>{{ post.text|linebreaks }}</p>
         {% if not forloop.last %}<hr>{% endif %}
-      {% endfor %}  
+      {% endfor %} 
+      </article> 
       </div>  
     {% endblock %}
     
