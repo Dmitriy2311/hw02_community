@@ -7,21 +7,30 @@ MAX_LENGTH = 200
 
 
 class Group(models.Model):
-    title = models.CharField(max_length=MAX_LENGTH)
-    slug = models.SlugField(unique=True)
-    description = models.TextField()
+    title = models.CharField(
+        max_length=MAX_LENGTH,
+        verbose_name='Название группы'
+    )
+    slug = models.SlugField(
+        unique=True,
+        verbose_name='Номер группы'
+    )
+    description = models.TextField(verbose_name='Описание группы')
 
     def __str__(self):
         return self.title
 
 
 class Post(models.Model):
-    text = models.TextField()
-    pub_date = models.DateTimeField(auto_now_add=True)
+    text = models.TextField(verbose_name='Текст статьи')
+    pub_date = models.DateTimeField(
+        auto_now_add=True,
+        verbose_name='Дата публикации'
+    )
     author = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
-        related_name='posts'
+        verbose_name='Автор статьи'
     )
 
     group = models.ForeignKey(
@@ -29,7 +38,7 @@ class Post(models.Model):
         blank=True,
         null=True,
         on_delete=models.SET_NULL,
-        related_name='posts'
+        verbose_name='Группа статей'
     )
 
     class Meta:
